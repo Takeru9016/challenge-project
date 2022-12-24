@@ -7,9 +7,6 @@ export default {
             name: "caption",
             title: "Caption",
             type: "string",
-            options: {
-                isHighlighted: true
-            }
         },
     ],
     options: {

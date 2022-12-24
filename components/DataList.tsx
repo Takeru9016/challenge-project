@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import urlFor from "../lib/urlFor";
+import ClientSideRoute from "./ClientSideRoute";
 
 type Props = {
   vendors: Vendor[];
@@ -25,11 +27,16 @@ export default function DataList({ vendors }: Props) {
       <div>
         <div className="relative flex mt-5 items-center rounded h-14 w-[1500px] bg-gray-400 border-2 pr-6 text-xl font-extralight">
           <div className="flex items-center self-stretch gap-[24px] p-4 w-[400px]">
-            <div className="w-fit whitespace-nowrap leading-4 font-semibold text-2xl">
-              Shop Name
+            <div className="w-fit whitespace-nowrap leading-4 text-2xl">
+              Image
             </div>
           </div>
 
+          <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+            <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+              Shop Name
+            </div>
+          </div>
           <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
             <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
               Vendor Name
@@ -51,33 +58,53 @@ export default function DataList({ vendors }: Props) {
               Ratings
             </div>
           </div>
-          <div className="self-stretch flex h-14 min-w-[92px] "></div>
+          <div className="self-stretch flex min-w-[92px] "></div>
         </div>
 
-        {/* {vendors.map((vendor) => (
-          <div className="flex flex-col group cursor-pointer" key={vendor.id}>
-            <div className="relative w-96 h-80 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
-              <Image
-                className="object-cover object-left lg:object-center"
-                src={urlFor(vendor.mainImage).url()}
-                alt={vendor.shopname}
-                fill
-              />
-              <div>
-                <div className="absolute bottom-0 bg-opacity-20 bg-black rounded drop-shadow-lg text-white p-5 flex justify-between">
-                  <p className="font-bold">{vendor.shopname}</p>
-                  <p>
-                    {new Date(vendor._createdAt).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
+        {vendors.map((vendor) => (
+          <ClientSideRoute
+            key={vendor._id}
+            route={`/vendor/${vendor.slug.current}`}
+          >
+            <div className="relative flex mt-5 items-center rounded h-14 w-[1500px] border-2 pr-6 text-xl font-extralight">
+              <div className="flex items-center self-stretch gap-[24px] p-4 w-[400px]">
+                <div className="w-fit whitespace-nowrap leading-4 text-2xl">
+                  {vendor.shopname}
                 </div>
               </div>
+
+              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                  {vendor.shopname}
+                </div>
+              </div>
+              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                  {vendor.name}
+                </div>
+              </div>
+              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                  {vendor.id}
+                </div>
+              </div>
+              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                  {vendor.price}
+                </div>
+              </div>
+
+              <div className="flex items-end self-stretch gap-4 py-5 pb-4 w-[200px]">
+                <div className="leading-4 w-fit whitespace-nowrap mt-[-1px]">
+                  {vendor.ratings}
+                </div>
+              </div>
+              <div className="flex items-start gap-4 relative w-fit">
+                <p className="text-sm hover:underline">Read More</p>
+              </div>
             </div>
-          </div>
-        ))} */}
+          </ClientSideRoute>
+        ))}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { client } from "../../lib/sanity.client";
 export const query = groq`
   *[_type == "vendor"] {
     ...,
-  } | order(_createdAt desc)`;
+  } | order(_createdAt asc)`;
 
 export default async function HomePage() {
   if (previewData()) {
