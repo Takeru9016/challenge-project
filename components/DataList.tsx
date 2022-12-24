@@ -1,8 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
-import urlFor from "../lib/urlFor";
-import ClientSideRoute from "./ClientSideRoute";
-
 type Props = {
   vendors: Vendor[];
 };
@@ -17,7 +12,7 @@ export default function DataList({ vendors }: Props) {
           </div>
         </div>
         <div className="flex items-start gap-4 relative w-fit">
-          <a href="http://localhost:3000/studio">
+          <a href="https://datawarehousecentre.vercel.app/studio">
             <button className="rounded text-xl border p-3 border-blue-700 ">
               Create New Data
             </button>
@@ -62,48 +57,46 @@ export default function DataList({ vendors }: Props) {
         </div>
 
         {vendors.map((vendor) => (
-          <ClientSideRoute
+          <div
+            className="relative flex mt-5 items-center rounded h-14 w-[1500px] border-2 pr-6 text-xl font-extralight"
             key={vendor._id}
-            route={`/vendor/${vendor.slug.current}`}
           >
-            <div className="relative flex mt-5 items-center rounded h-14 w-[1500px] border-2 pr-6 text-xl font-extralight">
-              <div className="flex items-center self-stretch gap-[24px] p-4 w-[400px]">
-                <div className="w-fit whitespace-nowrap leading-4 text-2xl">
-                  {vendor.shopname}
-                </div>
-              </div>
-
-              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
-                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
-                  {vendor.shopname}
-                </div>
-              </div>
-              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
-                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
-                  {vendor.name}
-                </div>
-              </div>
-              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
-                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
-                  {vendor.id}
-                </div>
-              </div>
-              <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
-                <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
-                  {vendor.price}
-                </div>
-              </div>
-
-              <div className="flex items-end self-stretch gap-4 py-5 pb-4 w-[200px]">
-                <div className="leading-4 w-fit whitespace-nowrap mt-[-1px]">
-                  {vendor.ratings}
-                </div>
-              </div>
-              <div className="flex items-start gap-4 relative w-fit">
-                <p className="text-sm hover:underline">Read More</p>
+            <div className="flex items-center self-stretch gap-[24px] p-4 w-[400px]">
+              <div className="w-fit whitespace-nowrap leading-4 text-2xl">
+                {vendor.shopname}
               </div>
             </div>
-          </ClientSideRoute>
+
+            <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+              <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                {vendor.shopname}
+              </div>
+            </div>
+            <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+              <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                {vendor.name}
+              </div>
+            </div>
+            <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+              <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                {vendor.id}
+              </div>
+            </div>
+            <div className="flex items-center self-stretch gap-4 py-5 pb-4 w-[300px]">
+              <div className="w-fit whitespace-nowrap leading-4 mt-[-1px]">
+                {vendor.price}
+              </div>
+            </div>
+
+            <div className="flex items-end self-stretch gap-4 py-5 pb-4 w-[200px]">
+              <div className="leading-4 w-fit whitespace-nowrap mt-[-1px]">
+                {vendor.ratings}
+              </div>
+            </div>
+            <div className="flex items-start gap-4 relative w-fit">
+              <p className="text-sm hover:underline">Read More</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>
